@@ -27,12 +27,12 @@ def preprocess_text(text):
     # Get a set of English stopwords from NLTK
     stopwords_set = set(stopwords.words("english"))
 
-    # Lemmatization
+    # Tokenization
     tokens = word_tokenize(text)
 
     # Apply Lemmatization to each token and filter out stopwords
     tokens = [lemmatizer.lemmatize(token) for token in tokens if token not in stopwords_set]
-    
+    print(tokens)
     # Rejoin tokens into a single string
     clean_text = ' '.join(tokens)
     return clean_text
@@ -40,6 +40,8 @@ def preprocess_text(text):
 # Load dataset from CSV
 file_path = '/Users/hari/Documents/Visual Studio/Basics-1/covidtweet.csv'  # Replace with your CSV file path
 df = pd.read_csv(file_path,encoding='cp1252')
+
+print(df.describe())
 
 # Display first few rows before preprocessing
 print("Before Preprocessing:")
@@ -57,8 +59,3 @@ print(df[['cleaned_tweet_text']].head())
 output_path = 'cleaned_tweets.csv'  # Replace with your desired output path
 df.to_csv(output_path, index=False)
 print(f"\nCleaned data saved to {output_path}")
-
-
-
-
-
